@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class PredictiveSearch {
+    
+    static int l=0;
+    static int arr[];
+    
+    //input array
+    static void inputarray(int length){ 
+        Scanner sc = new Scanner(System.in);
+        
+        arr=new int[length];
+        for(int i=0;i<5;i++){
+            arr[i]=sc.nextInt();
+        }
+    }
+    
+    static void sort(){
+        int i,exc,j;
+        for(j=0;j<l;j++){
+            for(i=0;i<l-1; i++){//DO NOT FORGET THE L-1 ELSE IT WILL GO OUT OF BOUNDS
+                if(arr[i]>arr[i+1]){
+                    exc = arr[i];
+                    arr[i]=arr[i+1];
+                    arr[i+1]=exc;
+                }
+            }
+        }
+    }
+    
+    
+    static void search(double val){
+        
+        int max=arr[l-1], min=arr[0];
+        int loc;
+        boolean b=false;
+        loc=(int)Math.round((((val-min)*l)/(max-min)));
+        
+        while(max>min){
+            loc=(int)Math.round((((val-min)*l)/(max-min)));
+            if(arr[loc]==val){
+                b=true;
+                System.out.println(loc);
+                break;
+            }
+            else if(arr[loc]<val)
+                min=loc+1;
+            else
+                max=loc-1;
+            
+        }
+        
+        
+    }//function
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter desired length of array");
+        l=sc.nextInt();
+        System.out.println("Enter 5 numbers");
+        inputarray(l);
+        sort();
+        System.out.println("Enter value to be searched");
+    
+        double srchVal = sc.nextDouble();
+        search(srchVal);
+    }
+
+    
+}
