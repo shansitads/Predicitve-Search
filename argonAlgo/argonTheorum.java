@@ -28,8 +28,8 @@ class main {
 
     private static void takeInputAndInitialize() {
         System.out.println("Entering 10 numbers as per function \n");
-        int[] temp = new int[10];
-        for(int i=0;i<10;i++){
+        int[] temp = new int[100];//############################################# CHANGE THE LENGTH HERE
+        for(int i=0;i<temp.length;i++){
             temp[i] = test.applyFunction(i);
         }
         array = new InertArray(temp);
@@ -61,7 +61,9 @@ class InertArray {
         while(!done){
             max=baseArray[highIndex];
             min=baseArray[0];
-
+            if(highIndex-lowIndex == 0) { 
+                return loc;
+            }
             slope = (max - min)/(highIndex- lowIndex);
             y_intercept = min - slope*lowIndex;
 

@@ -28,8 +28,8 @@ class main {
 
     private static void takeInputAndInitialize() {
         System.out.println("Entering 10 numbers as per function \n");
-        int[] temp = new int[10];
-        for(int i=0;i<10;i++){
+        int[] temp = new int[10];//##################################################  CHANGE THE LENGTH HERE
+        for(int i=0;i<temp.length;i++){
             temp[i] = test.applyFunction(i);
         }
         array = new ShansitaArray(temp);
