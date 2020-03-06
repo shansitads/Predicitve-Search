@@ -5,8 +5,23 @@ public class PredictiveSearch {
     static int l=0;
     static int arr[];
     
-    //input array
-    static void inputarray(int length){ 
+    
+    public static void main(String[] args) { //MAIN
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter desired length of array");
+        l=sc.nextInt();
+        
+        System.out.println("Enter 5 numbers");
+        inputarray(l);
+        sort();
+        
+        System.out.println("Enter value to be searched");
+        double srchVal = sc.nextDouble();
+        search(srchVal);
+    }
+    
+    
+    static void inputarray(int length){ //INPUT ARRAY
         Scanner sc = new Scanner(System.in);
         
         arr=new int[length];
@@ -15,7 +30,7 @@ public class PredictiveSearch {
         }
     }
     
-    static void sort(){
+    static void sort(){ //BUBBLE SORTING
         int i,exc,j;
         for(j=0;j<l;j++){
             for(i=0;i<l-1; i++){//DO NOT FORGET THE L-1 ELSE IT WILL GO OUT OF BOUNDS
@@ -29,42 +44,33 @@ public class PredictiveSearch {
     }
     
     
-    static void search(double val){
+    static void search(double val){ //PREDICTIVE SEARCHING
         
         int max=arr[l-1], min=arr[0];
         int loc;
         boolean b=false;
-        loc=(int)Math.round((((val-min)*l)/(max-min)));
+        loc=(int)Math.round((((val-min)*l)/(max-min))); //predict position of element on the basis of its value relative to largest and smallest elements of the array
         
         while(max>min){
-            loc=(int)Math.round((((val-min)*l)/(max-min)));
+            loc=(int)Math.round((((val-min)*l)/(max-min))); //predict position of element on the basis of its value relative to largest and smallest elements of the array
             if(arr[loc]==val){
                 b=true;
                 System.out.println(loc);
                 break;
             }
             else if(arr[loc]<val)
-                min=loc+1;
+                min=loc+1; //narrow down region being searched
             else
-                max=loc-1;
+                max=loc-1; //narrow down region being searched
             
         }
+        if(!b)
+            System.out.println("Value not found");
         
         
-    }//function
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter desired length of array");
-        l=sc.nextInt();
-        System.out.println("Enter 5 numbers");
-        inputarray(l);
-        sort();
-        System.out.println("Enter value to be searched");
-    
-        double srchVal = sc.nextDouble();
-        search(srchVal);
     }
+
+    
 
     
 }
